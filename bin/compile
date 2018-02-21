@@ -140,7 +140,7 @@ export PKG_CONFIG_PATH="/app/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:/app/.apt/u
 export LDFLAGS="-L/app/.apt/usr/lib/libblas -L/app/.apt/usr/lib/lapack $LDFLAGS"
 
 echo $PKG_CONFIG_PATH
-find /usr/local/ -name "popp*"
+find / -iname 'popp*' -print
 
 # copy over environment
 mkdir -p $BUILD_DIR/.profile.d
