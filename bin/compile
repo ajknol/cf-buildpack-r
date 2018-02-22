@@ -168,3 +168,16 @@ echo "R $R_VERSION successfully installed" | indent
 rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
+
+#env vars
+echo 'export PATH=/app/vendor/R/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/app/tesseract-ocr/tessdata:$PATH' >> ~/.bashrc
+echo 'export R_INCLUDE="/app/vendor/R/lib64/R/include' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH="/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export LIBRARY_PATH="/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LIBRARY_PATH' >> ~/.bashrc
+echo 'export INCLUDE_PATH="/app/.apt/usr/include:$INCLUDE_PATH' >> ~/.bashrc
+echo 'export CPATH="$INCLUDE_PATH' >> ~/.bashrc
+echo 'export CPPPATH="$INCLUDE_PATH' >> ~/.bashrc
+echo 'export PKG_CONFIG_PATH="/app/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:/app/.apt/usr/lib/i386-linux-gnu/pkgconfig:/app/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH' >> ~/.bashrc
+echo 'export LDFLAGS="-L/app/.apt/usr/lib/libblas -L/app/.apt/usr/lib/lapack $LDFLAGS' >> ~/.bashrc
+echo 'export TESSDATA_PREFIX="/app/tesseract-ocr/tessdata:$PATH' >> ~/.bashrc
+. ~/.bashrc
