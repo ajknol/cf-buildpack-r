@@ -231,8 +231,11 @@ cp "$BUILDPACK_DIR/bin/Rprofile.site" "$CHROOT_DIR/etc/R/Rprofile.site"
 
 
 # copy dirs in chroot dir
-mkdir -p "$BUILD_DIR/test"
-cp "/app/.root/usr/share/tesseract-ocr" "$BUILD_DIR/test"
+topic "CHROOT_DIR: $CHROOT_DIR"
+topic "BUILDPACK_DIR: $BUILDPACK_DIR"
+topic "BUILD_DIR: $BUILD_DIR"
+mkdir -p "$BUILD_DIR/test_copy"
+#cp "/app/.root/usr/share/tesseract-ocr" "$BUILD_DIR/test_copy"
 
 
 
