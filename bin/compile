@@ -152,6 +152,7 @@ PYTHONUSERBASE=/app/vendor/Python python3 get-pip.py --prefix=/app/vendor/Python
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    PACKAGE_NAME=$(basename $PACKAGE)
    /app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
+   /app/vendor/Python/bin/pip3 install --user $PACKAGE_NAME | indent
 done
 
 # install dependencies from CRAN
