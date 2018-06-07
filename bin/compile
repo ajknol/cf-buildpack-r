@@ -144,6 +144,7 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 # Pipfile allow for installation of Python packages
+mkdir -p /app/vendor/Python
 echo "Executing Pipfile installs" | indent
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py --prefix=/app/vendor/Python
