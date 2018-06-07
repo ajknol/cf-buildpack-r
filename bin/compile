@@ -97,8 +97,7 @@ cp -R $VENDOR_DIR/R/* /app/vendor/R
 
 
 # needed for compiling packages
-export PATH="/app/vendor/R/bin:app/vendor/Python/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/app/tesseract-ocr/tessdata:$PATH"
-export PYTHONUSERBASE="/app/vendor/Python"
+export PATH="/app/vendor/R/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/app/tesseract-ocr/tessdata:$PATH"
 export R_INCLUDE="/app/vendor/R/lib64/R/include"
 export LD_LIBRARY_PATH="/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LD_LIBRARY_PATH"
 export LIBRARY_PATH="/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LIBRARY_PATH"
@@ -143,23 +142,6 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
-# Pipfile allow for installation of Python packages
-mkdir -p /app/vendor/Python
-echo "Executing Pipfile installs" | indent
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-PYTHONUSERBASE=/app/vendor/Python python get-pip.py --prefix=/app/vendor/Python
-PYTHONUSERBASE=/app/vendor/Python python3 get-pip.py --prefix=/app/vendor/Python
-#python get-pip.py --prefix=/app/vendor/Python
-#python3 get-pip.py --prefix=/app/vendor/Python
-for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
-   PACKAGE_NAME=$(basename $PACKAGE)
-   #/app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
-   /app/vendor/Python/bin/pip3 install --user $PACKAGE_NAME | indent
-   #pip install --user $PACKAGE_NAME | indent
-   #pip3 install --user $PACKAGE_NAME | indent
-done
-alias python=python3
-
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
@@ -180,7 +162,3 @@ echo "R $R_VERSION successfully installed" | indent
 rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
-
-rm -rf $VENDOR_DIR/Python
-mkdir -p $VENDOR_DIR/Python
-cp -R /app/vendor/Python/* $VENDOR_DIR/Python
