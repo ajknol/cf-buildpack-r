@@ -98,7 +98,7 @@ cp -R $VENDOR_DIR/R/* /app/vendor/R
 
 # needed for compiling packages
 export PATH="/app/vendor/R/bin:app/vendor/Python/bin:/app/.apt/usr/bin:/app/bin:/usr/ruby1.9.2/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/app/tesseract-ocr/tessdata:$PATH"
-#export PYTHONUSERBASE="/app/vendor/Python"
+export PYTHONUSERBASE="/app/vendor/Python"
 export R_INCLUDE="/app/vendor/R/lib64/R/include"
 export LD_LIBRARY_PATH="/app/.apt/usr/lib/libblas:/app/.apt/usr/lib/lapack:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LD_LIBRARY_PATH"
 export LIBRARY_PATH="/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib/i386-linux-gnu:/app/.apt/usr/lib:$LIBRARY_PATH"
@@ -147,16 +147,16 @@ done
 mkdir -p /app/vendor/Python
 echo "Executing Pipfile installs" | indent
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-#PYTHONUSERBASE=/app/vendor/Python python get-pip.py --prefix=/app/vendor/Python
-#PYTHONUSERBASE=/app/vendor/Python python3 get-pip.py --prefix=/app/vendor/Python
-python get-pip.py --prefix=/app/vendor/Python
-python3 get-pip.py --prefix=/app/vendor/Python
+PYTHONUSERBASE=/app/vendor/Python python get-pip.py --prefix=/app/vendor/Python
+PYTHONUSERBASE=/app/vendor/Python python3 get-pip.py --prefix=/app/vendor/Python
+#python get-pip.py --prefix=/app/vendor/Python
+#python3 get-pip.py --prefix=/app/vendor/Python
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    PACKAGE_NAME=$(basename $PACKAGE)
-   #/app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
-   #/app/vendor/Python/bin/pip3 install --user $PACKAGE_NAME | indent
-   pip install --user $PACKAGE_NAME | indent
-   pip3 install --user $PACKAGE_NAME | indent
+   /app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
+   /app/vendor/Python/bin/pip3 install --user $PACKAGE_NAME | indent
+   #pip install --user $PACKAGE_NAME | indent
+   #pip3 install --user $PACKAGE_NAME | indent
 done
 
 # install dependencies from CRAN
