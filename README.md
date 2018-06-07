@@ -1,3 +1,6 @@
+# Aptfile and Pipfile
+Updated with Aptfile to allow for installation of OS libs and Pipfile to allow for installation of Python packages
+
 # Cloud Foundry R Buildpack
 
 Forked from [Heroku R buildpack](https://github.com/virtualstaticvoid/heroku-buildpack-r) to support Cloud Foundry. Works with R 3.3.1. Tested with Shiny. 
