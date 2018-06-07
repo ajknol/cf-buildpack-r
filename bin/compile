@@ -158,6 +158,7 @@ for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    #pip install --user $PACKAGE_NAME | indent
    #pip3 install --user $PACKAGE_NAME | indent
 done
+alias python=python3
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
