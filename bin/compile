@@ -141,6 +141,12 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
+# Pipfile allow for installation of Python packages
+for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
+   PACKAGE_NAME=$(basename $PACKAGE)
+   python /app/vendor/python/bin/pip install --user $PACKAGE_NAME | indent
+done
+
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
