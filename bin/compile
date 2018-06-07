@@ -153,7 +153,8 @@ curl http://pyyaml.org/download/pyyaml/PyYAML-3.12.tar.gz -o PyYAML-3.12.tar.gz
 #python PyYAML/setup.py install 
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    PACKAGE_NAME=$(basename $PACKAGE)
-   python /app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
+   #/app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
+   pip install --user $PACKAGE_NAME | indent
 done
 
 # install dependencies from CRAN
@@ -176,3 +177,7 @@ echo "R $R_VERSION successfully installed" | indent
 rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
+
+rm -rf $VENDOR_DIR/Python
+mkdir -p $VENDOR_DIR/Python
+cp -R /app/vendor/Python/* $VENDOR_DIR/Python
