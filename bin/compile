@@ -116,6 +116,7 @@ mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
 # Aptfile allow for installation of OS libs
+echo "Executing Aptfile installs" | indent
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
 mkdir -p "$APT_CACHE_DIR/archives/partial"
@@ -142,6 +143,7 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 # Pipfile allow for installation of Python packages
+echo "Executing Pipfile installs" | indent
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    PACKAGE_NAME=$(basename $PACKAGE)
    python /app/vendor/python/bin/pip install --user $PACKAGE_NAME | indent
