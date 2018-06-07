@@ -147,6 +147,9 @@ done
 echo "Executing Pipfile installs" | indent
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py --prefix=/app/vendor/Python
+curl http://pyyaml.org/download/pyyaml/PyYAML-3.12.tar.gz
+tar -xvzf PyYAML-3.12.tar.gz
+python PyYAML/setup.py install 
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
    PACKAGE_NAME=$(basename $PACKAGE)
    python /app/vendor/Python/bin/pip install --user $PACKAGE_NAME | indent
