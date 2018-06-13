@@ -184,5 +184,5 @@ rm -rf $VENDOR_DIR/Python
 # Pipfile allow for installation of python packages
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
-  $VENDOR_DIR/python3/bin/pip3 install $PACKAGE | indent
+  pip3 install $PACKAGE | indent
 done
