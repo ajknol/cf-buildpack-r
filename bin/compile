@@ -178,14 +178,12 @@ mkdir -p $VENDOR_DIR/python3
 make && make install
 wget -q https://bootstrap.pypa.io/get-pip.py -P $VENDOR_DIR/Python
 $VENDOR_DIR/python3/bin/python3 $VENDOR_DIR/Python/get-pip.py
-rm -rf $VENDOR_DIR/Python
 
 # Pipfile allow for installation of python packages
 echo "Executing Pipfile installs" | indent
-alias pip3='/tmp/app/vendor/python3/bin/pip3'
-alias pip='/tmp/app/vendor/python3/bin/pip3'
-alias python='/tmp/app/vendor/python3/bin/python3'
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
-  pip3 install $PACKAGE | indent
+  tmp/app/vendor/python3/bin/pip3 install $PACKAGE | indent
 done
+
+rm -rf $VENDOR_DIR/Python
