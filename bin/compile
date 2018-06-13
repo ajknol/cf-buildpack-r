@@ -86,7 +86,7 @@ echo "Vendoring R $R_VERSION for $STACK stack ($BUILD_PACK_VERSION)" | indent
 # download and unpack binaries
 echo "Downloading and unpacking R binaries ($R_BINARIES)" | indent
 #curl $R_BINARIES -s -o - | tar xzf - -C $BUILD_DIR
-tar xzf R-3.3.1-binaries-20160720-0331.tar.gz -C $BUILD_DIR
+tar xzf ./R-3.3.1-binaries-20160720-0331.tar.gz -C $BUILD_DIR
 
 # need to copy the binaries to /app/vendor so that R works when compiling packages
 
