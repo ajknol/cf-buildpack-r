@@ -147,8 +147,8 @@ echo "Executing Python install" | indent
 wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
 tar -xvzf Python-3.6.5.tgz
 cd /Python-3.6.5
-configure --prefix=/app/vendor/python3 
-make && make install
+#configure --prefix=/app/vendor/python3 
+#make && make install
 cd ../
 
 # install dependencies from CRAN
