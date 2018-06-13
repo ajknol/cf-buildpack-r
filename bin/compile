@@ -178,3 +178,7 @@ mkdir -p $VENDOR_DIR/python3
 ./configure --prefix=$VENDOR_DIR/python3
 make && make install
 rm -rf $VENDOR_DIR/Python
+alias python=$VENDOR_DIR/python3/bin/python3
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
