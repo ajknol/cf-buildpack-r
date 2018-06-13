@@ -177,5 +177,4 @@ cd $VENDOR_DIR/Python/Python-3.6.5
 mkdir -p $VENDOR_DIR/python3
 ./configure --prefix=$VENDOR_DIR/python3
 make && make install
-#rm -rf $VENDOR_DIR/Python
-alias python='/app/vendor/python3/bin'
+rm -rf $VENDOR_DIR/Python
