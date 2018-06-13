@@ -176,3 +176,4 @@ tar -xzf Python-3.6.5.tgz
 cd $VENDOR_DIR/Python/Python-3.6.5
 ./configure --prefix=/app/vendor/python3
 make && make install
+rm -rf $VENDOR_DIR/Python
