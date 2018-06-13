@@ -170,7 +170,7 @@ echo "LP dir: $LP_DIR"
 echo "BUILDPACK dir: $BUILDPACK_DIR"
 echo "VENDOR dir: $VENDOR_DIR"
 mkdir -p $VENDOR_DIR/Python
-wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $VENDOR_DIR/Python
+wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $VENDOR_DIR/Python
 #rm -rf $VENDOR_DIR/Python
 #mkdir -p $VENDOR_DIR/Python
 #cp -R /app/vendor/Python/* $VENDOR_DIR/Python
