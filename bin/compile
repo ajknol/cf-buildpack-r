@@ -179,7 +179,7 @@ cd $VENDOR_DIR/Python
 tar -xzf Python-3.6.5.tgz
 cd $VENDOR_DIR/Python/Python-3.6.5
 mkdir -p $VENDOR_DIR/python3
-./configure --prefix=$VENDOR_DIR/python3 --enable-shared
+./configure --enable-shared --prefix=$VENDOR_DIR/python3
 make && make install
 wget -q https://bootstrap.pypa.io/get-pip.py -P $VENDOR_DIR/Python
 $VENDOR_DIR/python3/bin/python3 $VENDOR_DIR/Python/get-pip.py
