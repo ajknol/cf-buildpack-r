@@ -174,6 +174,6 @@ wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $VENDOR_DIR/Pyt
 #rm -rf $VENDOR_DIR/Python
 #mkdir -p $VENDOR_DIR/Python
 #cp -R /app/vendor/Python/* $VENDOR_DIR/Python
-#cd $VENDOR_DIR
+cd $VENDOR_DIR/Python
 #tar -xvzf $VENDOR_DIR/Python-3.6.5.tgz
 #cd $VENDOR_DIR/Python-3.6.5
