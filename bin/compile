@@ -177,7 +177,6 @@ cd $VENDOR_DIR/Python/Python-3.6.5
 mkdir -p $VENDOR_DIR/python3
 ./configure --prefix=$VENDOR_DIR/python3
 make && make install
-alias python=$VENDOR_DIR/python3/bin/python3
 wget -q https://bootstrap.pypa.io/get-pip.py -P $VENDOR_DIR/Python
-python $VENDOR_DIR/Python/get-pip.py
+$VENDOR_DIR/python3/bin/python3 $VENDOR_DIR/Python/get-pip.py
 rm -rf $VENDOR_DIR/Python
