@@ -182,6 +182,9 @@ rm -rf $VENDOR_DIR/Python
 
 # Pipfile allow for installation of python packages
 echo "Executing Pipfile installs" | indent
+alias pip3='/tmp/app/vendor/python3/bin/pip3'
+alias pip='/tmp/app/vendor/python3/bin/pip3'
+alias python='/tmp/app/vendor/python3/bin/python3'
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
   pip3 install $PACKAGE | indent
