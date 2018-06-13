@@ -163,7 +163,7 @@ rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 
-# install Python local
+# install Python
 echo "Build dir: $BUILD_DIR"
 echo "Cache dir: $CACHE_DIR"
 echo "LP dir: $LP_DIR"
