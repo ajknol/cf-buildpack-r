@@ -174,3 +174,5 @@ wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $VENDOR_DIR/
 cd $VENDOR_DIR/Python
 tar -xzf Python-3.6.5.tgz
 cd $VENDOR_DIR/Python/Python-3.6.5
+./configure --prefix=/app/vendor/python3
+make && make install
