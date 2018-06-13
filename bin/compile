@@ -171,5 +171,5 @@ echo "BUILDPACK dir: $BUILDPACK_DIR"
 echo "VENDOR dir: $VENDOR_DIR"
 curl -O $VENDOR_DIR/Python-3.6.5.tgz https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
 cd $VENDOR_DIR
-tar -xvzf Python-3.6.5.tgz
-cd $VENDOR_DIR/Python-3.6.5
+#tar -xvzf Python-3.6.5.tgz
+#cd $VENDOR_DIR/Python-3.6.5
