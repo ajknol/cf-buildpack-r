@@ -8,7 +8,6 @@ App directory should contain the following:
 - run.r file
 - manifest.yml file
 - Aptfile
-- Pipfile.r
 
 ## init.r
 Include which packages to install, e.g.:
