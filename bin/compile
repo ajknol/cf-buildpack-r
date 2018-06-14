@@ -149,7 +149,6 @@ done
 
 # install Python from source in vendor dir
 echo "Install Python from source" | indent
-pwd
 INSTALL_DIR="/app/vendor"
 echo "Build dir: $BUILD_DIR"
 echo "BUILDPACK dir: $BUILDPACK_DIR"
@@ -166,6 +165,7 @@ make && make install
 wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
 $INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
 rm -rf $INSTALL_DIR/Python
+cd /home/vcap
 echo "Python successfully installed" | indent
 
 # install dependencies from CRAN
