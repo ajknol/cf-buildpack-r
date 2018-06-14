@@ -187,8 +187,9 @@ export LD_LIBRARY_PATH="/app/vendor/python3/lib:$LD_LIBRARY_PATH"
 export PATH="/app/vendor/python3/bin:$PATH"
 echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 echo "PATH: $PATH"
+cat tmp/app/vendor/python3/bin/
 
-Pipfile allow for installation of python packages
+#Pipfile allow for installation of python packages
 #echo "Executing Pipfile installs" | indent
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
