@@ -149,6 +149,7 @@ done
 
 # install Python from source in vendor dir
 echo "Install Python from source" | indent
+pwd
 INSTALL_DIR="/app/vendor"
 echo "Build dir: $BUILD_DIR"
 echo "BUILDPACK dir: $BUILDPACK_DIR"
