@@ -170,6 +170,7 @@ cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 # install Python from source in vendor dir
 echo "Install Python from source" | indent
+$VENDOR_DIR="/app/vendor"
 echo "Build dir: $BUILD_DIR"
 echo "BUILDPACK dir: $BUILDPACK_DIR"
 echo "VENDOR dir: $VENDOR_DIR"
@@ -185,6 +186,7 @@ wget -q https://bootstrap.pypa.io/get-pip.py -P $VENDOR_DIR/Python
 $VENDOR_DIR/python3/bin/python3 $VENDOR_DIR/Python/get-pip.py
 echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 echo "PATH: $PATH"
+cp -R /app/vendor/python3/* $VENDOR_DIR/python3
 
 #Pipfile allow for installation of python packages
 echo "Executing Pipfile installs" | indent
