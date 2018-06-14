@@ -193,7 +193,7 @@ rm -rf $INSTALL_DIR/Python
 echo "Executing Pipfile installs" | indent
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
-  /app/vendor/python3/bin/pip3 install $PACKAGE | indent
+  /tmp/app/vendor/python3/bin/pip3 install $PACKAGE | indent
 done
 
 # copy to vendor_dir
