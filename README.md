@@ -27,7 +27,10 @@ my_packages <- c("h5py", "keras", "tensorflow")
 print(Sys.getenv("LD_LIBRARY_PATH"))
 Sys.setenv(LD_LIBRARY_PATH = paste0("/app/vendor/python3/lib:",Sys.getenv("LD_LIBRARY_PATH")))
 print(Sys.getenv("LD_LIBRARY_PATH"))
-for(pkg in my_packages) system(paste("/app/vendor/python3/bin/pip3 install",pkg))
+for(pkg in my_packages) {
+  print(paste("installing",pkg))
+  system(paste("/app/vendor/python3/bin/pip3 install",pkg))
+} 
 rm(my_packages, pkg)
 
 #device
