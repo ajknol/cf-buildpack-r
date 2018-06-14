@@ -195,5 +195,13 @@ cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
 echo "Executing Pipfile installs" | indent
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
-  $VENDOR_DIR/python3/bin/pip3 install $PACKAGE | indent
+  $BUILD_DIR/vendor/python3/bin/pip3 install $PACKAGE | indent
 done
+
+/app/vendor/R/bin/R -s <<RPROG > indent
+  Sys.setenv(BUILD_DIR="$BUILD_DIR");
+  setwd("$BUILD_DIR");
+  system("/app/vendor/python3/bin/pip3 install h5py");
+  system("/app/vendor/python3/bin/pip3 install keras");
+  system("/app/vendor/python3/bin/pip3 install tensorflow")
+RPROG
