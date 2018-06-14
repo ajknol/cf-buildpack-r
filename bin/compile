@@ -147,6 +147,26 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
+# install Python from source in vendor dir
+echo "Install Python from source" | indent
+INSTALL_DIR="/app/vendor"
+echo "Build dir: $BUILD_DIR"
+echo "BUILDPACK dir: $BUILDPACK_DIR"
+echo "VENDOR dir: $VENDOR_DIR"
+echo "INSTALL dir: $INSTALL_DIR"
+mkdir -p $INSTALL_DIR/Python
+wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $INSTALL_DIR/Python
+cd $INSTALL_DIR/Python
+tar -xzf Python-3.6.5.tgz
+cd $INSTALL_DIR/Python/Python-3.6.5
+mkdir -p $INSTALL_DIR/python3
+./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib
+make && make install
+wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
+$INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
+rm -rf $INSTALL_DIR/Python
+echo "Python successfully installed" | indent
+
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
@@ -168,26 +188,7 @@ rm -rf $VENDOR_DIR/R
 mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 
-# install Python from source in vendor dir
-echo "Install Python from source" | indent
-INSTALL_DIR="/app/vendor"
-echo "Build dir: $BUILD_DIR"
-echo "BUILDPACK dir: $BUILDPACK_DIR"
-echo "VENDOR dir: $VENDOR_DIR"
-echo "INSTALL dir: $INSTALL_DIR"
-mkdir -p $INSTALL_DIR/Python
-wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $INSTALL_DIR/Python
-cd $INSTALL_DIR/Python
-tar -xzf Python-3.6.5.tgz
-cd $INSTALL_DIR/Python/Python-3.6.5
-mkdir -p $INSTALL_DIR/python3
-./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib
-make && make install
-wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
-$INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
-rm -rf $INSTALL_DIR/Python
 # copy to vendor dir
 rm -rf $VENDOR_DIR/python3
 mkdir -p $VENDOR_DIR/python3
 cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
-echo "Python successfully installed" | indent
