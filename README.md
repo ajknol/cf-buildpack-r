@@ -10,23 +10,36 @@ App directory should contain the following:
 - Aptfile
 
 ## init.r
-Include which packages to install, e.g.:
+Which packages to install, e.g.:
 ```
-my_packages = c("shiny", "DT", "dplyr", "stringr", "zoo", "scales", "reticulate", "keras", "abind")
+#R packages
+my_packages = c("shiny", "shinyjs", "DT", "dplyr", "stringr", "zoo", "scales", "keras", "abind", "PivotalR", "RPostgreSQL", "DBI")
 install_if_missing = function(p) {
   if (p %in% rownames(installed.packages()) == FALSE) {
     install.packages(p, Ncpus = 8, dependencies = TRUE)
   }
 }
 invisible(sapply(my_packages, install_if_missing))
+rm(my_packages, install_if_missing)
+
+#Python packages
+my_packages <- c("h5py", "keras", "tensorflow")
+print(Sys.getenv("LD_LIBRARY_PATH"))
+Sys.setenv(LD_LIBRARY_PATH = paste0("/app/vendor/python3/lib:",Sys.getenv("LD_LIBRARY_PATH")))
+print(Sys.getenv("LD_LIBRARY_PATH"))
+for(pkg in my_packages) system(paste("/app/vendor/python3/bin/pip3 install",pkg))
+rm(my_packages, pkg)
+
+#device
+options(device='cairo')
 ```
 
 ## run.r
-Opens Shiny app, e.g.:
+Opens Shiny app as declared in manifest.yml, e.g.:
 
 ```
 #set Python version
-Sys.setenv(PATH = paste0("/app/vendor/python3/bin:",Sys.getenv("LD_LIBRARY_PATH")))
+Sys.setenv(PATH = paste0("/app/vendor/python3/bin:",Sys.getenv("PATH")))
 Sys.setenv(LD_LIBRARY_PATH = paste0("/app/vendor/python3/lib:",Sys.getenv("LD_LIBRARY_PATH")))
 require(reticulate)
 use_python("/app/vendor/python3/bin/python3", required = TRUE)
@@ -34,10 +47,8 @@ py_config()
 
 #run
 require(shiny)
-options(device='cairo')
 port <- Sys.getenv('PORT')
-print(port)
-shiny::runApp('dashboard',host = '0.0.0.0', port = as.numeric(port))
+shiny::runApp('dashboard', host = '0.0.0.0', port = as.numeric(port))
 ```
 
 ## manifest.yml
