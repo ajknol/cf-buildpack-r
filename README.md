@@ -1,5 +1,5 @@
 # Cloudfoundry R Shiny + Python Buildpack
-Forked from https://github.com/beibeiyang/cf-buildpack-r. Cloud Foundry R 3.3.1 Shiny buildpack which allows for installation of OS libs (sometimes required for R packages) and Python packages.
+Forked from https://github.com/beibeiyang/cf-buildpack-r. Cloud Foundry R 3.3.1 Shiny buildpack which allows for installation of OS libs (sometimes required for R packages) and Python packages. I was not able to pip install in the Python 2.x / 3.x already available in the buildpack (permissions), so therefore build Python from source again in the /app/vendor dir.
 
 ## Install
 App directory should contain the following:
