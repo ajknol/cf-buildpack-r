@@ -189,14 +189,14 @@ echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 echo "PATH: $PATH"
 rm -rf $INSTALL_DIR/Python
 
-#Pipfile allow for installation of python packages
-#echo "Executing Pipfile installs" | indent
-#for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
-#  echo "install $PACKAGE"
-#  /tmp/app/vendor/python3/bin/pip3 install $PACKAGE | indent
-#done
-
-# copy to vendor_dir
+# copy to vendor dir
 rm -rf $VENDOR_DIR/python3
 mkdir -p $VENDOR_DIR/python3
 cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
+
+# Pipfile allow for installation of python packages
+echo "Executing Pipfile installs" | indent
+for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
+  echo "install $PACKAGE"
+  $VENDOR_DIR/python3/bin/pip3 install $PACKAGE | indent
+done
