@@ -77,7 +77,7 @@ libyaml-dev
 ```
 
 ## Cloudfoundry push
-Push app to cloudfoundry. 
+Push app to cloudfoundry using CLI. 
 
 In terminal, cd into the root folder of your app directory.
 
