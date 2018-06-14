@@ -193,10 +193,10 @@ cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
 
 # Pipfile allow for installation of python packages
 echo "Executing Pipfile installs" | indent
-for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
-  echo "install $PACKAGE"
-  $BUILD_DIR/vendor/python3/bin/pip3 install $PACKAGE | indent
-done
+#for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
+#  echo "install $PACKAGE"
+#  $BUILD_DIR/vendor/python3/bin/pip3 install $PACKAGE | indent
+#done
 
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR");
