@@ -87,7 +87,7 @@ In terminal, login to Cloudfoundry:
 cf login
 ```
 
-In terminal, push app, .e.g.:
+In terminal, push app:
 
 ```
 cf push <shiny_app_name>
