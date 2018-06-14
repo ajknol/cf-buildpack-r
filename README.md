@@ -2,8 +2,8 @@
 Forked from https://github.com/beibeiyang/cf-buildpack-r. Cloud Foundry R 3.3.1 Shiny buildpack which allows for installation of OS libs (sometimes required for R packages) and Python packages.
 
 ## Install
-App directory, containing the following:
-- a subdirectory "dashboard" containing your Shiny code
+App directory should contain the following:
+- a subdirectory "dashboard" containing Shiny code
 - init.r file
 - run.r file
 - manifest.yml file
@@ -66,16 +66,19 @@ r-cran-slam
 libyaml-dev
 ```
 
-## Pipfile.r
-Place Pipfile.r in root dir with required Python packages, e.g.:
+## Cloudfoundry push
+Push app to cloudfoundry. 
+In terminal, cd into the root folder of your app directory
+In terminal, login to Cloudfoundry:
 
 ```
-#include Python packages to install
-packages <- c("h5py",
-              "keras",
-              "tensorflow")
-
-#install
-for(pkg in packages) system(paste("/app/vendor/python3/bin/pip3 install",pkg))
-rm(packages, pkg)
+cf login
 ```
+
+In terminal, push app, .e.g.:
+
+```
+cf push <shiny_app_name>
+```
+
+https://pivotalsoftware.github.io/gp-r/#shiny_cf
