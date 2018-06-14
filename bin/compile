@@ -170,30 +170,31 @@ cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 # install Python from source in vendor dir
 echo "Install Python from source" | indent
-$VENDOR_DIR="/app/vendor"
+INSTALL_DIR="/app/vendor"
 echo "Build dir: $BUILD_DIR"
 echo "BUILDPACK dir: $BUILDPACK_DIR"
 echo "VENDOR dir: $VENDOR_DIR"
-mkdir -p $VENDOR_DIR/Python
-wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $VENDOR_DIR/Python
-cd $VENDOR_DIR/Python
+echo "INSTALL dir: $INSTALL_DIR"
+mkdir -p $INSTALL_DIR/Python
+wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $INSTALL_DIR/Python
+cd $INSTALL_DIR/Python
 tar -xzf Python-3.6.5.tgz
-cd $VENDOR_DIR/Python/Python-3.6.5
-mkdir -p $VENDOR_DIR/python3
-./configure --enable-shared --prefix=$VENDOR_DIR/python3 LDFLAGS=-Wl,-rpath=$VENDOR_DIR/python3/lib
+cd $INSTALL_DIR/Python/Python-3.6.5
+mkdir -p $INSTALL_DIR/python3
+./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib
 make && make install
-wget -q https://bootstrap.pypa.io/get-pip.py -P $VENDOR_DIR/Python
-$VENDOR_DIR/python3/bin/python3 $VENDOR_DIR/Python/get-pip.py
+wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
+$INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
 echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 echo "PATH: $PATH"
-cp -R /app/vendor/python3/* $VENDOR_DIR/python3
+#cp -R INSTALL_DIR/python3/* $VENDOR_DIR/python3
 
 #Pipfile allow for installation of python packages
 echo "Executing Pipfile installs" | indent
 for PACKAGE in $(cat $BUILD_DIR/Pipfile); do
   echo "install $PACKAGE"
-  /tmp/app/vendor/python3/bin/pip3 install $PACKAGE | indent
+  #/tmp/app/vendor/python3/bin/pip3 install $PACKAGE | indent
 done
 #cp -R /app/vendor/python3/* $VENDOR_DIR/python3
 
-rm -rf $VENDOR_DIR/Python
+rm -rf INSTALL_DIR/Python
