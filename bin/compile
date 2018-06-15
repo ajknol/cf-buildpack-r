@@ -194,6 +194,10 @@ mkdir -p $VENDOR_DIR/R
 cp -R /app/vendor/R/* $VENDOR_DIR/R
 
 # copy to vendor dir
-rm -rf $VENDOR_DIR/python3
-mkdir -p $VENDOR_DIR/python3
-cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
+if [[ -f $BUILD_DIR/SkipPythonInstall ]]; then
+    echo "Skip Python install" | indent
+else
+    rm -rf $VENDOR_DIR/python3
+    mkdir -p $VENDOR_DIR/python3
+    cp -R $INSTALL_DIR/python3/* $VENDOR_DIR/python3
+fi
