@@ -10,7 +10,7 @@ App directory should contain the following:
 
 Optional:
 - R-3.3.1-binaries-20160720-0331.tar.gz
-- skip_python_install
+- SkipPythonInstall
 
 ## init.r
 Which packages to install, e.g.:
@@ -87,8 +87,8 @@ Include R-3.3.1-binaries-20160720-0331.tar.gz in root dir to skip downloading th
 
 http://heroku-buildpack-r.s3.amazonaws.com/cedar-14/R-3.3.1-binaries-20160720-0331.tar.gz
 
-## skip_python_install
-place a file named skip_python_install in the root dir to skip the Python install.
+## SkipPythonInstall
+place a file named SkipPythonInstall in the root dir to skip the Python install.
 
 ## Cloudfoundry push
 Push app to cloudfoundry using CLI. 
