@@ -83,7 +83,9 @@ libyaml-dev
 ```
 
 ## R-3.3.1-binaries-20160720-0331.tar.gz
-Include in root dir to skip downloading the R binaries during CF push and speed things up.
+Include R-3.3.1-binaries-20160720-0331.tar.gz in root dir to skip downloading the R binaries during CF push and speed things up:
+
+http://heroku-buildpack-r.s3.amazonaws.com/cedar-14/R-3.3.1-binaries-20160720-0331.tar.gz
 
 ## skip_python_install
 place a file named skip_python_install in the root dir to skip the Python install.
