@@ -148,10 +148,10 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 # install Python from source in vendor dir
-if [[ -f $BUILD_DIR/skip-python-install ]]; then
-  echo "Skip Python install" | indent
+if [[ -f $BUILD_DIR/SkipPythonInstall ]]; then
+    echo "Skip Python install" | indent
 else
-  echo "Install Python from source" | indent
+    echo "Install Python from source" | indent
     INSTALL_DIR="/app/vendor"
     echo "Build dir: $BUILD_DIR"
     echo "BUILDPACK dir: $BUILDPACK_DIR"
