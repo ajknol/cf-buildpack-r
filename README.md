@@ -7,7 +7,10 @@ App directory should contain the following:
 - init.r file
 - run.r file
 - manifest.yml file
-- Aptfile
+
+Optional:
+- R-3.3.1-binaries-20160720-0331.tar.gz
+- skip_python_install
 
 ## init.r
 Which packages to install, e.g.:
@@ -78,6 +81,12 @@ Place Aptfile in root dir with required OS libs on each line, e.g.:
 r-cran-slam
 libyaml-dev
 ```
+
+## R-3.3.1-binaries-20160720-0331.tar.gz
+Include in root dir to skip downloading the R binaries during CF push and speed things up.
+
+## skip_python_install
+place a file named skip_python_install in the root dir to skip the Python install.
 
 ## Cloudfoundry push
 Push app to cloudfoundry using CLI. 
