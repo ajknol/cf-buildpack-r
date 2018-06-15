@@ -148,9 +148,10 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
 done
 
 # install Python from source in vendor dir
-for CONF in $(cat $BUILD_DIR/Config); do
-  if [[ $CONF == "python_install" ]]; then
-    echo "Install Python from source" | indent
+if [[ -f $BUILD_DIR/skip-python-install ]]; then
+  echo "Skip Python install" | indent
+else
+  echo "Install Python from source" | indent
     INSTALL_DIR="/app/vendor"
     echo "Build dir: $BUILD_DIR"
     echo "BUILDPACK dir: $BUILDPACK_DIR"
@@ -169,10 +170,7 @@ for CONF in $(cat $BUILD_DIR/Config); do
     rm -rf $INSTALL_DIR/Python
     cd /home/vcap
     echo "Python successfully installed" | indent
-  else
-    echo "Skip Python install" | indent
-  fi
-done
+fi
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
