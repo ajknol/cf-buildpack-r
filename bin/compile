@@ -83,7 +83,7 @@ mkdir -p $CACHE_DIR
 # vendor R into the slug
 echo "Vendoring R $R_VERSION for $STACK stack ($BUILD_PACK_VERSION)" | indent
 
-file = $BUILD_DIR/R-3.3.1-binaries-20160720-0331.tar.gz
+file = "$BUILD_DIR/R-3.3.1-binaries-20160720-0331.tar.gz"
 if [ -e "$file" ]; then
     # use tar.gz placed in project dir instead of downloading to speed things up
     # http://heroku-buildpack-r.s3.amazonaws.com/cedar-14/R-3.3.1-binaries-20160720-0331.tar.gz
