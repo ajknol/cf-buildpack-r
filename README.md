@@ -7,6 +7,7 @@ App directory should contain the following:
 - init.r file
 - run.r file
 - manifest.yml file
+- Aptfile file
 
 Optional:
 - R-3.3.1-binaries-20160720-0331.tar.gz
