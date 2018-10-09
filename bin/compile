@@ -164,7 +164,7 @@ else
     tar -xzf Python-3.6.5.tgz
     cd $INSTALL_DIR/Python/Python-3.6.5
     mkdir -p $INSTALL_DIR/python3
-    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib
+    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib --with-tcltk-includes='-I/Library/Frameworks/Tcl.framework/Headers -I/Library/Frameworks/Tk.framework/Headers' --with-tcltk-libs='/Library/Frameworks/Tcl.framework/Versions/8.6/Tcl /Library/Frameworks/Tk.framework/Versions/8.6/TK'
     make && make install
     wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
     $INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
