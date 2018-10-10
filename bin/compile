@@ -159,12 +159,22 @@ else
     echo "VENDOR dir: $VENDOR_DIR"
     echo "INSTALL dir: $INSTALL_DIR"
     mkdir -p $INSTALL_DIR/Python
+    mkdir -p $INSTALL_DIR/python3
     wget -q https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -P $INSTALL_DIR/Python
+    wget -q https://prdownloads.sourceforge.net/tcl/tcl8.7a1-src.tar.gz -P $INSTALL_DIR/Python
+    wget -q https://prdownloads.sourceforge.net/tcl/tk8.7a1-src.tar.gz -P $INSTALL_DIR/Python
     cd $INSTALL_DIR/Python
     tar -xzf Python-3.6.5.tgz
+    tar -xzf tcl8.7a1-src.tar.gz
+    tar -xzf tk8.7a1-src.tar.gz
+    cd $INSTALL_DIR/Python/tcl8.7a1/unix
+    ./configure --prefix=$INSTALL_DIR/python3/tcl --exec-prefix=$INSTALL_DIR/python3/tcl
+    make && make install
+    cd $INSTALL_DIR/Python/tk8.5.11/unix
+    ./configure --prefix=$INSTALL_DIR/python3/tk --exec-prefix=$INSTALL_DIR/python3/tk --with-tcl=$INSTALL_DIR/python3/tcl/unix
+    make && make install
     cd $INSTALL_DIR/Python/Python-3.6.5
-    mkdir -p $INSTALL_DIR/python3
-    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib --with-tcltk-includes='-I/Library/Frameworks/Tcl.framework/Headers -I/Library/Frameworks/Tk.framework/Headers' --with-tcltk-libs='/Library/Frameworks/Tcl.framework/Versions/8.6/Tcl /Library/Frameworks/Tk.framework/Versions/8.6/TK'
+    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib --with-tcltk-includes='$INSTALL_DIR/python3/tcl/include $INSTALL_DIR/python3/tk/include' --with-tcltk-libs='$INSTALL_DIR/python3/tcl/lib/libtcl8.7.so $INSTALL_DIR/python3/tk/lib/libtcl8.7.so'
     make && make install
     wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
     $INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
