@@ -171,12 +171,12 @@ else
     ./configure --prefix=$INSTALL_DIR/python3/tcl --exec-prefix=$INSTALL_DIR/python3/tcl
     make && make install
     cd $INSTALL_DIR/Python/tk8.7a1/unix
-    ./configure --prefix=$INSTALL_DIR/python3/tk --exec-prefix=$INSTALL_DIR/python3
-    make && make install
+    #./configure --prefix=$INSTALL_DIR/python3/tk --exec-prefix=$INSTALL_DIR/python3
+    #make && make install
     ./configure --prefix=$INSTALL_DIR/python3/tk --exec-prefix=$INSTALL_DIR/python3/tk --with-tcl=$INSTALL_DIR/python3/tcl/unix
     make && make install
     cd $INSTALL_DIR/Python/Python-3.6.5
-    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib --with-tcltk-includes='$INSTALL_DIR/python3/tcl/include $INSTALL_DIR/python3/tk/include' --with-tcltk-libs='$INSTALL_DIR/python3/tcl/lib/libtcl8.7.so $INSTALL_DIR/python3/tk/lib/libtk8.7.so'
+    ./configure --enable-shared --prefix=$INSTALL_DIR/python3 LDFLAGS=-Wl,-rpath=$INSTALL_DIR/python3/lib --with-tcltk-includes='$INSTALL_DIR/python3/tcl/include' --with-tcltk-libs='$INSTALL_DIR/python3/tcl/lib/libtcl8.7.so $INSTALL_DIR/python3/tk/lib/libtk8.7.so'
     make && make install
     wget -q https://bootstrap.pypa.io/get-pip.py -P $INSTALL_DIR/Python
     $INSTALL_DIR/python3/bin/python3 $INSTALL_DIR/Python/get-pip.py
